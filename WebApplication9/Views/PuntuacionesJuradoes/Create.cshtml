@@ -1,0 +1,77 @@
+﻿@model WebApplication9.Models.PuntuacionesJurado
+
+@{
+    ViewData["Title"] = "Crear Puntuación del Jurado";
+}
+
+<body>
+    <div class="container mt-5">
+        <div class="main">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-primary">Agregar Nueva Puntuación</h1>
+                <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <!-- Jurado -->
+                        <div class="form-group mb-3">
+                            <label asp-for="IdJurado" class="form-label"></label>
+                            <select asp-for="IdJurado" class="form-select" asp-items="ViewBag.IdJurado"></select>
+                            <span asp-validation-for="IdJurado" class="text-danger"></span>
+                        </div>
+
+                        <!-- Concurso -->
+                        <div class="form-group mb-3">
+                            <label asp-for="IdConcurso" class="form-label"></label>
+                            <select asp-for="IdConcurso" class="form-select" asp-items="ViewBag.IdConcurso"></select>
+                            <span asp-validation-for="IdConcurso" class="text-danger"></span>
+                        </div>
+
+                        <!-- Inscripción -->
+                        <div class="form-group mb-3">
+                            <label asp-for="IdInscripcion" class="form-label"></label>
+                            <select asp-for="IdInscripcion" class="form-select" asp-items="ViewBag.IdInscripcion"></select>
+                            <span asp-validation-for="IdInscripcion" class="text-danger"></span>
+                        </div>
+
+                        <!-- Puntuación -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Puntuacion" class="form-label"></label>
+                            <input asp-for="Puntuacion" class="form-control" />
+                            <span asp-validation-for="Puntuacion" class="text-danger"></span>
+                        </div>
+
+                        <!-- Comentarios -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Comentarios" class="form-label"></label>
+                            <input asp-for="Comentarios" class="form-control" />
+                            <span asp-validation-for="Comentarios" class="text-danger"></span>
+                        </div>
+
+                        <!-- Razón -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Razon" class="form-label"></label>
+                            <input asp-for="Razon" class="form-control" />
+                            <span asp-validation-for="Razon" class="text-danger"></span>
+                        </div>
+
+                        <!-- Botón de Crear -->
+                        <div class="d-grid gap-2">
+                            <input type="submit" value="Crear Puntuación" class="btn btn-primary btn-block" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>

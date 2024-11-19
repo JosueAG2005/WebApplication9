@@ -1,0 +1,52 @@
+﻿@model WebApplication9.Models.PuntuacionesJurado
+
+@{
+    ViewData["Title"] = "Detalles de Puntuaciones del Jurado";
+}
+
+<div class="container mt-5" style="padding-left: 50px;">
+    <h1 class="text-primary">Detalles de Puntuaciones del Jurado</h1>
+
+    <div class="card p-4">
+        <h4 class="card-title">PuntuacionesJurado</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Puntuacion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Puntuacion)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Comentarios)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Comentarios)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Razon)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Razon)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.IdConcursoNavigation.Nombre)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.IdConcursoNavigation.Nombre)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.IdInscripcionNavigation.IdInscripcion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.IdInscripcionNavigation.IdInscripcion)
+            </dd>
+            
+        </dl>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Edit" asp-route-id="@Model?.IdPuntuacion" class="btn btn-warning">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>

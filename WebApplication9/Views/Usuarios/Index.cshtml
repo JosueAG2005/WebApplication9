@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebApplication9.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Gestión de Usuarios";
+}
+
+<body>
+    <div class="container mt-5">
+        <div class="main">
+            <!-- Título principal y botón de creación -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-primary">Gestión de Usuarios</h1>
+                <a asp-action="Create" class="btn btn-success">Agregar Nuevo Usuario</a>
+            </div>
+
+            <!-- Tabla de Usuarios -->
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.Contraseña)</th>
+                            <th>@Html.DisplayNameFor(model => model.TipoUsuario)</th>
+                            <th>@Html.DisplayNameFor(model => model.FechaRegistro)</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Contraseña)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TipoUsuario)</td>
+                                <td>@Html.DisplayFor(modelItem => item.FechaRegistro)</td>
+                                <td class="text-center">
+                                    <a asp-action="Edit" asp-route-id="@item.IdUsuario" class="btn btn-warning btn-sm mx-1">Editar</a>
+                                    <a asp-action="Details" asp-route-id="@item.IdUsuario" class="btn btn-info btn-sm mx-1">Detalles</a>
+                                    <a asp-action="Delete" asp-route-id="@item.IdUsuario" class="btn btn-danger btn-sm mx-1">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mensaje cuando no haya datos -->
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info text-center mt-4">
+                    No hay usuarios registrados. <a asp-action="Create" class="alert-link">Agregar un nuevo usuario</a>.
+                </div>
+            }
+        </div>
+    </div>
+</body>

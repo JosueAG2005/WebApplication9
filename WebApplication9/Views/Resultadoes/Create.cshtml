@@ -1,0 +1,56 @@
+﻿@model WebApplication9.Models.Resultado
+
+@{
+    ViewData["Title"] = "Crear Resultado";
+}
+
+<body>
+    <div class="container mt-5">
+        <div class="main">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-primary">Agregar Nuevo Resultado</h1>
+                <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <!-- Inscripción -->
+                        <div class="form-group mb-3">
+                            <label asp-for="IdInscripcion" class="form-label"></label>
+                            <select asp-for="IdInscripcion" class="form-select" asp-items="ViewBag.IdInscripcion"></select>
+                            <span asp-validation-for="IdInscripcion" class="text-danger"></span>
+                        </div>
+
+                        <!-- Puntuación Final -->
+                        <div class="form-group mb-3">
+                            <label asp-for="PuntuacionFinal" class="form-label"></label>
+                            <input asp-for="PuntuacionFinal" class="form-control" />
+                            <span asp-validation-for="PuntuacionFinal" class="text-danger"></span>
+                        </div>
+
+                        <!-- Clasificación -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Clasificacion" class="form-label"></label>
+                            <input asp-for="Clasificacion" class="form-control" />
+                            <span asp-validation-for="Clasificacion" class="text-danger"></span>
+                        </div>
+
+                        <!-- Botón de Crear -->
+                        <div class="d-grid gap-2">
+                            <input type="submit" value="Crear Resultado" class="btn btn-primary btn-block" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>

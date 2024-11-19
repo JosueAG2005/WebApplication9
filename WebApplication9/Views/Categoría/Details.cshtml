@@ -1,0 +1,33 @@
+﻿@model WebApplication9.Models.Categoría
+
+@{
+    ViewData["Title"] = "Detalles de Categoría";
+}
+
+<div class="container mt-5" style="padding-left: 50px;">
+    <h1 class="text-primary">Detalles de Categoría</h1>
+
+    <div class="card p-4">
+        <h4 class="card-title">Categoría</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.NombreCategoria)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.NombreCategoria)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Edit" asp-route-id="@Model?.IdCategoria" class="btn btn-warning">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>

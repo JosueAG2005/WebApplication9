@@ -1,0 +1,71 @@
+﻿@model WebApplication9.Models.Concurso
+
+@{
+    ViewData["Title"] = "Editar Concurso";
+}
+
+<body>
+    <div class="container mt-5">
+        <div class="main">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-primary">Editar Concurso</h1>
+                <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+            </div>
+
+            <div class="row form-container" style="padding-left: 50px;">
+                <div class="col-md-8">
+                    <form asp-action="Edit" asp-route-id="@Model.IdConcurso">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        <input type="hidden" asp-for="IdConcurso" />
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Nombre" class="form-label"></label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Descripcion" class="form-label"></label>
+                            <input asp-for="Descripcion" class="form-control" />
+                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="FechaInicio" class="form-label"></label>
+                            <input asp-for="FechaInicio" type="date" class="form-control" />
+                            <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="FechaFin" class="form-label"></label>
+                            <input asp-for="FechaFin" type="date" class="form-control" />
+                            <span asp-validation-for="FechaFin" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Estado" class="form-label"></label>
+                            <input asp-for="Estado" class="form-control" />
+                            <span asp-validation-for="Estado" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="IdCategoria" class="form-label"></label>
+                            <select asp-for="IdCategoria" class="form-select" asp-items="ViewBag.IdCategoria"></select>
+                            <span asp-validation-for="IdCategoria" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="IdTipoConcurso" class="form-label"></label>
+                            <select asp-for="IdTipoConcurso" class="form-select" asp-items="ViewBag.IdTipoConcurso"></select>
+                            <span asp-validation-for="IdTipoConcurso" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <input type="submit" value="Guardar" class="btn btn-primary btn-block" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

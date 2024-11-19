@@ -1,0 +1,33 @@
+﻿@model WebApplication9.Models.Jurado
+
+@{
+    ViewData["Title"] = "Detalles de Jurado";
+}
+
+<div class="container mt-5" style="padding-left: 50px;">
+    <h1 class="text-primary">Detalles de Jurado</h1>
+
+    <div class="card p-4">
+        <h4 class="card-title">Jurado</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.IdConcursoNavigation.Nombre)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.IdConcursoNavigation.Nombre)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.IdUsuarioNavigation.Nombre)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.IdUsuarioNavigation.Nombre)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Edit" asp-route-id="@Model?.IdJurado" class="btn btn-warning">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>

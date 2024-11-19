@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebApplication9.Models.Premio>
+
+@{
+    ViewData["Title"] = "Premios";
+    var userRole = Context.Session.GetString("UserRole") ?? "Guest"; // Obtener el rol del usuario desde la sesión
+}
+
+<body>
+    <div class="container mt-5">
+        <div class="main">
+            <!-- Título principal -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-primary">Gestión de Premios</h1>
+                @if (userRole == "admin")
+                {
+                    <a asp-action="Create" class="btn btn-success">Agregar Nuevo Premio</a>
+                }
+            </div>
+
+            <!-- Tabla de Premios -->
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
+                            <th>@Html.DisplayNameFor(model => model.Cantidad)</th>
+                            <th>@Html.DisplayNameFor(model => model.IdConcursoNavigation)</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
+                                <td>@Html.DisplayFor(modelItem => item.IdConcursoNavigation.IdConcurso)</td>
+                                <td class="text-center">
+                                    @if (userRole == "admin")
+                                    {
+                                        <a asp-action="Edit" asp-route-id="@item.IdPremio" class="btn btn-warning btn-sm mx-1">Editar</a>
+                                        <a asp-action="Delete" asp-route-id="@item.IdPremio" class="btn btn-danger btn-sm mx-1">Eliminar</a>
+                                    }
+                                    @if (userRole == "admin" || userRole == "jurado" || userRole == "participante")
+                                    {
+                                        <a asp-action="Details" asp-route-id="@item.IdPremio" class="btn btn-info btn-sm mx-1">Detalles</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mensaje cuando no haya datos -->
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info text-center mt-4">
+                    No hay premios registrados.
+                </div>
+            }
+        </div>
+    </div>
+</body>

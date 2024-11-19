@@ -1,0 +1,49 @@
+﻿@model WebApplication9.Models.Inscripcione
+
+@{
+    ViewData["Title"] = "Crear Inscripción";
+}
+
+<body>
+    <div class="container mt-5">
+        <div class="main">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-primary">Crear Nueva Inscripción</h1>
+                <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <!-- Usuario -->
+                        <div class="form-group mb-3">
+                            <label asp-for="IdUsuario" class="form-label"></label>
+                            <select asp-for="IdUsuario" class="form-select" asp-items="ViewBag.IdUsuario"></select>
+                            <span asp-validation-for="IdUsuario" class="text-danger"></span>
+                        </div>
+
+                        <!-- Concurso -->
+                        <div class="form-group mb-3">
+                            <label asp-for="IdConcurso" class="form-label"></label>
+                            <select asp-for="IdConcurso" class="form-select" asp-items="ViewBag.IdConcurso"></select>
+                            <span asp-validation-for="IdConcurso" class="text-danger"></span>
+                        </div>
+
+                        <!-- Botón de Crear -->
+                        <div class="d-grid gap-2">
+                            <input type="submit" value="Crear Inscripción" class="btn btn-primary btn-block" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>

@@ -1,0 +1,39 @@
+﻿@model WebApplication9.Models.Premio
+
+@{
+    ViewData["Title"] = "Detalles de Premio";
+}
+
+<div class="container mt-5" style="padding-left: 50px;">
+    <h1 class="text-primary">Detalles de Premio</h1>
+
+    <div class="card p-4">
+        <h4 class="card-title">Premio</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Cantidad)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.IdConcursoNavigation.Nombre)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.IdConcursoNavigation.Nombre)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Edit" asp-route-id="@Model?.IdPremio" class="btn btn-warning">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>

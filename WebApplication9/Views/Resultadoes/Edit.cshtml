@@ -1,0 +1,53 @@
+﻿@model WebApplication9.Models.Resultado
+
+@{
+    ViewData["Title"] = "Editar Resultado";
+}
+
+<body>
+    <div class="container mt-5">
+        <div class="main">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-primary">Editar Resultado</h1>
+                <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+            </div>
+
+            <div class="row form-container" style="padding-left: 50px;">
+                <div class="col-md-4">
+                    <form asp-action="Edit" asp-route-id="@Model.IdResultado">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        <input type="hidden" asp-for="IdResultado" />
+
+                        <div class="form-group mb-3">
+                            <label asp-for="IdInscripcion" class="control-label"></label>
+                            <select asp-for="IdInscripcion" class="form-select" asp-items="ViewBag.IdInscripcion"></select>
+                            <span asp-validation-for="IdInscripcion" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="PuntuacionFinal" class="control-label"></label>
+                            <input asp-for="PuntuacionFinal" class="form-control" />
+                            <span asp-validation-for="PuntuacionFinal" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Clasificacion" class="control-label"></label>
+                            <input asp-for="Clasificacion" class="form-control" />
+                            <span asp-validation-for="Clasificacion" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <input type="submit" value="Guardar" class="btn btn-primary btn-block" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

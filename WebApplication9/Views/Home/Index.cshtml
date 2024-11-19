@@ -1,0 +1,136 @@
+﻿@model IEnumerable<WebApplication9.Models.Concurso>
+
+@{
+    ViewData["Title"] = "Dashboard de Sistema de Concursos";
+}
+
+<!-- Estilos CSS para resaltar las tarjetas -->
+<style>
+    .card {
+        background: linear-gradient(145deg, #e6e6e6, #ffffff);
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15), -5px -5px 15px rgba(255, 255, 255, 0.7);
+        border: 1px solid #ddd;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), -10px -10px 20px rgba(255, 255, 255, 0.9);
+        }
+
+        .card .numbers {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card .cardName {
+            font-size: 1.1rem;
+            color: #777;
+        }
+
+    .iconBx {
+        font-size: 2.5rem;
+        color: #666;
+    }
+</style>
+
+<body>
+    <div class="container mt-5">
+        <div class="main">
+            <!-- Topbar -->
+            <div class="topbar d-flex justify-content-between align-items-center mb-4">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <div class="search">
+                    <label>
+                        <input type="text" class="form-control" placeholder="Buscar concursos...">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <div class="user">
+                    <img src="assets/imgs/customer01.jpg" alt="Usuario">
+                </div>
+            </div>
+
+           
+
+            <!-- Tarjetas de Estadísticas del Sistema -->
+            <div class="cardBox mb-4">
+                <div class="card shadow-sm text-center">
+                    <div>
+                        <div class="numbers">@ViewData["TotalUsuarios"]</div>
+                        <div class="cardName">Total de Usuarios</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm text-center">
+                    <div>
+                        <div class="numbers">@ViewData["TotalConcursosActivos"]</div>
+                        <div class="cardName">Concursos Activos</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="trophy-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm text-center">
+                    <div>
+                        <div class="numbers">@ViewData["TotalInscripcionesHoy"]</div>
+                        <div class="cardName">Inscripciones Hoy</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="document-text-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm text-center">
+                    <div>
+                        <div class="numbers">@ViewData["TotalPuntuaciones"]</div>
+                        <div class="cardName">Total de Puntuaciones</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="star-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+            <!-- Concursos Recientes -->
+            <div class="recentConcursos">
+                <div class="cardHeader d-flex justify-content-between align-items-center mb-4">
+                    <h2>Concursos Recientes</h2>
+                </div>
+
+                <table class="table table-borderless">
+                    @foreach (var concurso in Model)
+                    {
+                        <tr>
+                          
+                            <td>
+                                <h4>
+                                    @concurso.Nombre <br>
+                                    <span>@concurso.FechaInicio.ToString("dd MMM yyyy") - @concurso.Estado</span>
+                                </h4>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                <!-- Mensaje cuando no hay concursos -->
+                @if (!Model.Any())
+                {
+                    <div class="alert alert-info text-center mt-4">
+                        No hay concursos registrados actualmente.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts para Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>

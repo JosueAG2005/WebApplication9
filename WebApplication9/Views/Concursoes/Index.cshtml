@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebApplication9.Models.Concurso>
+
+@{
+    ViewData["Title"] = "Concursos";
+    var userRole = Context.Session.GetString("UserRole") ?? "Guest"; // Obtener el rol del usuario desde la sesión
+}
+
+<body>
+    <div class="container mt-5">
+        <div class="main">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-primary">Gestión de Concursos</h1>
+                @if (userRole == "admin")
+                {
+                    <a asp-action="Create" class="btn btn-success">Crear Nuevo Concurso</a>
+                }
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                            <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
+                            <th>@Html.DisplayNameFor(model => model.FechaInicio)</th>
+                            <th>@Html.DisplayNameFor(model => model.FechaFin)</th>
+                            <th>@Html.DisplayNameFor(model => model.Estado)</th>
+                            <th>@Html.DisplayNameFor(model => model.IdCategoriaNavigation)</th>
+                            <th>@Html.DisplayNameFor(model => model.IdTipoConcursoNavigation)</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                                <td>@Html.DisplayFor(modelItem => item.FechaInicio)</td>
+                                <td>@Html.DisplayFor(modelItem => item.FechaFin)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                                <td>@Html.DisplayFor(modelItem => item.IdCategoriaNavigation.NombreCategoria)</td>
+                                <td>@Html.DisplayFor(modelItem => item.IdTipoConcursoNavigation.NombreTipo)</td>
+                                <td class="text-center">
+                                    @if (userRole == "admin")
+                                    {
+                                        <a asp-action="Edit" asp-route-id="@item.IdConcurso" class="btn btn-warning btn-sm mx-1">Editar</a>
+                                        <a asp-action="Delete" asp-route-id="@item.IdConcurso" class="btn btn-danger btn-sm mx-1">Eliminar</a>
+                                    }
+                                    @if (userRole == "admin" || userRole == "jurado" || userRole == "participante")
+                                    {
+                                        <a asp-action="Details" asp-route-id="@item.IdConcurso" class="btn btn-info btn-sm mx-1">Detalles</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info text-center mt-4">
+                    No hay concursos registrados.
+                </div>
+            }
+        </div>
+    </div>
+</body>

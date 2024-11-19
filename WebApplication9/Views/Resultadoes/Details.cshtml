@@ -1,0 +1,39 @@
+﻿@model WebApplication9.Models.Resultado
+
+@{
+    ViewData["Title"] = "Detalles de Resultado";
+}
+
+<div class="container mt-5" style="padding-left: 50px;">
+    <h1 class="text-primary">Detalles de Resultado</h1>
+
+    <div class="card p-4">
+        <h4 class="card-title">Resultado</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PuntuacionFinal)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PuntuacionFinal)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Clasificacion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Clasificacion)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.IdInscripcionNavigation.IdInscripcion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.IdInscripcionNavigation.IdInscripcion)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Edit" asp-route-id="@Model?.IdResultado" class="btn btn-warning">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>

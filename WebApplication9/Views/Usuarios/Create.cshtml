@@ -1,0 +1,65 @@
+﻿@model WebApplication9.Models.Usuario
+
+@{
+    ViewData["Title"] = "Crear Usuario";
+}
+
+<body>
+    <div class="container mt-5">
+        <div class="main">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-primary">Agregar Nuevo Usuario</h1>
+                <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <!-- Nombre -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Nombre" class="form-label"></label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" type="email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <!-- Contraseña -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Contraseña" class="form-label"></label>
+                            <input asp-for="Contraseña" type="password" class="form-control" />
+                            <span asp-validation-for="Contraseña" class="text-danger"></span>
+                        </div>
+
+                        <!-- Tipo de Usuario -->
+                        <!-- Tipo de Usuario -->
+                        <div class="form-group mb-3">
+                            <label asp-for="TipoUsuario" class="form-label"></label>
+                            <select asp-for="TipoUsuario" class="form-select" asp-items="ViewBag.TipoUsuarioOptions"></select>
+                            <span asp-validation-for="TipoUsuario" class="text-danger"></span>
+                        </div>
+
+
+                        <!-- Botón de Crear -->
+                        <div class="d-grid gap-2">
+                            <input type="submit" value="Crear Usuario" class="btn btn-primary btn-block" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
